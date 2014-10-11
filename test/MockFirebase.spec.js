@@ -142,6 +142,7 @@ describe('MockFirebase', function() {
   describe('#setWithPriority', function() {
     it('should pass the priority to #setPriority', function() {
       fb.autoFlush();
+      sinon.spy(fb, 'setPriority');
       fb.setWithPriority({}, 250);
       expect(fb.setPriority).to.have.been.calledWith(250);
     });
@@ -150,6 +151,7 @@ describe('MockFirebase', function() {
       var data = {};
       var callback = sinon.spy();
       fb.autoFlush();
+      sinon.spy(fb, 'set');
       fb.setWithPriority(data, 250, callback);
       expect(fb.set).to.have.been.calledWith(data, callback);
     });
